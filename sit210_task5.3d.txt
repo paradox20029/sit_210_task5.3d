@@ -1,0 +1,151 @@
+#armaan chetal
+#roll no 2110994755
+from tkinter import* #tkinter library imported with other libraries
+import tkinter . font
+from gpiozero import LED
+import RPi.GPIO
+RPi.GPIO.setmode(RPi.GPIO.BCM)
+import time
+
+myLed=LED(10) #gpio pin 10
+
+win=Tk() //window calling the tkinter object 
+win.title("blinking morse code via led")
+
+def BlinkLed(Input):
+    for letter in Input: #for loop iterates over the input, letter is the iterater variable and the input is the sequence of alphabets which the user inputs
+        if(letter=='a'):   //dot and dash are in the sequnce of the morse code chart
+            dot()
+            dash()
+        elif (letter=='b'):
+            dash()
+            dot()
+            dot()
+            dot()
+        elif (letter=='c'):
+            dash();
+            dot();
+            dash();
+            dot();
+        elif (letter=='d'):
+            dash()
+            dot()
+            dot()
+        elif (letter=='e'):
+            dot()
+        elif (letter=='f'):
+            dot()
+            dot()
+            dash()
+            dot()
+        elif (letter=='g'):
+            dash()
+            dash()
+            dot()
+        elif (letter=='h'):
+            dot()
+            dot()
+            dot()
+            dot()
+        elif (letter=='i'):
+            dot()
+            dot()
+        elif (letter=='j'):
+            dot()
+            dash()
+            dash()
+            dash()
+        elif (letter=='k'):
+            dash()
+            dot()
+            dash()
+        elif (letter=='l'):
+            dot()
+            dash()
+            dot()
+            dot()
+        elif (letter=='m'):
+            dash()
+            dash()
+        elif (letter=='n'):
+            dash()
+            dot()
+        elif (letter=='o'):
+            dash()
+            dash()
+            dash()
+        elif (letter=='p'):
+            dot()
+            dash()
+            dash()
+            dot()
+        elif (letter=='q'):
+            dash()
+            dash()
+            dot()
+            dash()
+        elif (letter=='r'):
+            dot()
+            dash()
+            dot()
+        elif (letter=='s'):
+            dot()
+            dot()
+            dot()
+        elif (letter=='t'):
+            dot()
+            dot()
+            dot()
+            dot()
+        elif (letter=='u'):
+            dot()
+            dot()
+            dash()
+        elif (letter=='v'):
+            dot()
+            dot()
+            dot()
+            dash()
+        elif (letter=='w'):
+            dot()
+            dash()
+            dash()
+        elif (letter=='x'):
+            dash()
+            dot()
+            dot()
+            dash()
+        elif (letter=='y'):
+            dash()
+            dot()
+            dash()
+            dash()
+        elif (letter=='z'):
+            dash()
+            dash()
+            dot()
+def dot():  #dot and dash have sperate time of led being on which makes dot and dash in the led while blinking
+    myLed.on()
+    time.sleep(0.2) #delay of 0.2 seconds and 0.8 seconds for dot and dash respectevily 
+    myLed.off()
+    time.sleep(0.2)
+    
+def dash():
+    myLed.on()
+    time.sleep(0.8)
+    myLed.off()
+    time.sleep(0.2)
+def myInput():
+    input=text_box.get("1.0","end-lc") # "1.0" and "end-lc" define the starting and ending point of the string  user input that will be read in the text widget
+    BlinkLed(input) #calling the method blink led with the user input as the parameter
+
+    
+text_box=Text(win,height=4,width=10,bg="white") //text widget with heigh width and background
+text_box.grid(row=1,column=1,padx=12,pady=6) #padx, pady are for how many pixels to pad widget, horizontally and vertically and adds padding around x and y axis
+
+#comand option invokes the funciton call back when the button is clicked 
+enter=Button(win,text="enter the word",command=myInput,bg='blue',height=4,width=10) //enter button with text and command having the method and bg,width and height
+enter.grid(row=2,column=1,padx=12,pady=6)
+
+win.mainloop() //main loop intiates the infinite loop runs the application and wait for an event to occur as long as the window is not closed
+    
